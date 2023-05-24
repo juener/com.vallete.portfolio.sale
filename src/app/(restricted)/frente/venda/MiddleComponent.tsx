@@ -1,4 +1,3 @@
-import MiddleLeftComponent from "./MiddleLeftComponent";
 import MiddleRightComponent from "./MiddleRightComponent";
 
 export default function MiddleComponent() {
