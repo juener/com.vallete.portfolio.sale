@@ -27,7 +27,7 @@ export default function GroupsComponent({ setSelectedGroup }: any) {
     <>
       <div className="grid grid-flow-col gap-4 p-2 bg-gradient-to-r from-red-100 to-cyan-50 rounded-md overflow-auto">
         {groups.map(group => (
-          <><Button key={group.id} name={group.name} onClick={() => handleGroupClick(group.id)} group /></>
+          <><Button key={group.id} name={group.name} onClick={() => handleGroupClick(group.id)} /></>
         ))}
       </div>
     </>
