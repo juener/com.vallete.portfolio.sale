@@ -1,8 +1,19 @@
 import { Fragment, useState, useContext } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import { ProductsContext } from '@/app/utils/ProductsContext';
+import Input from './Input';
+import Button from './Button';
+
+interface SelectedProduct {
+  id: string,
+  name: string,
+  price: number,
+  children: any
+}
 
 export default function SideNav(props: any) {
   const [open, setOpen] = useState(false)
+  const { removeProduct, removeAllProducts } = useContext(ProductsContext);
 
   return (
     <>
@@ -25,7 +36,7 @@ export default function SideNav(props: any) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+              <Dialog.Overlay className="absolute inset-0 bg-blue-950 bg-opacity-90 transition-opacity" />
             </Transition.Child>
             <div className="fixed inset-y-0 left-0 max-w-full flex">
               <Transition.Child
@@ -33,58 +44,61 @@ export default function SideNav(props: any) {
                 enter="transform transition ease-in-out duration-500 sm:duration-700"
                 enterFrom="-translate-x-full"
                 enterTo="translate-x-0"
-                leave="transform transition ease-in-out duration-500 sm:duration-700"
+                leave="transform transition ease-in-out duration-500 sm:duration-100"
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
                 <div className="relative w-screen max-w-md">
-                  <div className="h-full flex flex-col pt-6 shadow-xl overflow-y-auto bg-blue-950">
-                    <div className="flex flex-row items-center justify-end text-5xl font-bold">
-                      {/* <img src={props.partner?.avatar ?? "/favicon.ico"} className="rounded-full mr-3 w-24" /> */}
+                  <div className="h-full flex flex-col shadow-xl overflow-y-auto bg-gradient-to-tl from-pink-100 to-green-100">
+                    <div className="flex flex-row items-center justify-end text-5xl font-bold bg-blue-950">
                       <div className="flex flex-row justify-between flex-grow text-white">
-                        <p className='p-2 text-bold'>{props.name}</p>
+                        <p className='p-4 text-bold'>{props.product.name}</p>
                       </div>
                     </div>
-                    <div className="mt-6 relative flex flex-col h-full bg-gradient-to-tl from-pink-100 to-green-100 text-white">
-                      <div className="flex-grow px-6 pt-6 content-between">
-                        <div className="sm:grid sm:grid-cols-3 sm:gap-4">
-                          <dt className="text-sm font-medium text-gray-700">Name:</dt>
-                          <dd className="mb-3 text-sm text-black sm:mt-0 sm:col-span-2">{props.name}</dd>
-                        </div>
+                    <div className="flex flex-col w-full fixed bottom-0 max-h-[calc(100vh-20px)]  text-white pb-6 px-6">
+                      <Input />
+                      <div className='flex flex-row items-center justify-between'>
+                        <Button
+                          name={`-`}
+                          onClick={() => { removeProduct(props.product.entryNumber); setOpen(false); }}
+                          className={`
+                                        bg-red-800 hover:bg-red-700 mt-10
+                                        font-extrabold text-5xl
+                                    `}
+                        />
+                        <p className='text-black font-black text-center text-5xl pt-10 mx-10'>1</p>
+                        <Button
+                          name={`+`}
+                          onClick={() => dummy()}
+                          // bg-green-800 hover:bg-green-700 mt-10
+                          className={`
+                                      bg-gray-200 hover:bg-gray-200 mt-10 
+                                      font-extrabold text-5xl
+                                  `}
+                        />
                       </div>
-                      <div className="pb-6 px-6" aria-hidden="true">
-                        <div className='flex flex-row items-center justify-between'>
-                          <button onClick={() => dummy()} className={`
-                                                    bg-red-900 px-3 py-2 rounded-md bottom-0
-                                                    hover:cursor-pointer hover:bg-red-700 w-1/3 h-20
-                                                    text-white font-black text-center text-5xl
-                                                `}>-</button>
-                          <p className='text-black font-black text-center text-5xl'>1</p>
-                          <button onClick={() => dummy()} className={`
-                                                    bg-green-900 px-3 py-2 rounded-md bottom-0 
-                                                    hover:cursor-pointer hover:bg-green-700 w-1/3 h-20
-                                                    text-white font-black text-center text-5xl
-                                                `}>+</button>
-                        </div>
-                        <button onClick={() => setOpen(false)} className={`
-                                                    bg-indigo-900 px-3 py-2 rounded-md bottom-0 mt-10
-                                                    hover:cursor-pointer hover:bg-indigo-700 w-full h-20
-                                                    text-white text-sm font-medium text-center
-                                                `}>Desistir de Alterar</button>
-                        <button onClick={() => setOpen(false)} className={`
-                                                    bg-orange-700 px-3 py-2 rounded-md bottom-0 mt-10 
-                                                    hover:cursor-pointer hover:bg-orange-500 w-full h-20
-                                                    text-white text-sm font-medium text-center
-                                                `}>Limpar Produtos Ainda Não Confirmados</button>
-                      </div>
+                      <Button
+                        name={`Desistir de Alterar`}
+                        onClick={() => setOpen(false)}
+                        className={`
+                                    bg-indigo-900 hover:bg-indigo-700 mt-10                                    
+                                `}
+                      />
+                      <Button
+                        name={`Limpar Produtos Ainda Não Confirmados`}
+                        onClick={() => { removeAllProducts(); setOpen(false); }}
+                        className={`
+                                    bg-orange-700 hover:bg-orange-600 mt-10                                     
+                                `}
+                      />
                     </div>
                   </div>
                 </div>
               </Transition.Child>
             </div>
           </div>
-        </Dialog>
-      </Transition.Root>
+        </Dialog >
+      </Transition.Root >
     </>
   )
 }
@@ -92,3 +106,4 @@ export default function SideNav(props: any) {
 function dummy() {
   // Router.push('/login');
 }
+
