@@ -1,13 +1,13 @@
 interface ButtonSystemProps {
-  name: string,
-  onClick?: any,
+  name: string
+  onClick?: any
   className?: string
+  icon?: any
 }
 
-export default function Button(props: ButtonSystemProps) {
+export default function ButtonSystem(props: ButtonSystemProps) {
   return (
     <div className={`
-      
       ${props.className ?
         props.className
         :
@@ -21,7 +21,7 @@ export default function Button(props: ButtonSystemProps) {
       `}
       onClick={props.onClick}
     >
-      {props.name}
+      <span className="mx-2">{props.icon}</span>{props.name}
     </div>
   )
 }

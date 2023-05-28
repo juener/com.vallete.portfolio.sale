@@ -3,6 +3,7 @@ import { ProductsContext } from '@/app/utils/ProductsContext';
 
 import Button from "./elements/Button";
 import Input from "./elements/Input";
+import { Back } from '@/app/style/icons';
 
 
 export default function CartComponent(props: any) {
@@ -34,7 +35,7 @@ export default function CartComponent(props: any) {
             <p className='text-black font-black text-center text-5xl pt-10 mx-10'>1</p>
             <Button
               name={`+`}
-              onClick={() => dummy()}
+              onClick={() => { }}
               // bg-green-800 hover:bg-green-700 mt-10
               className={`
                                       bg-gray-200 hover:bg-gray-200 mt-10 
@@ -45,6 +46,7 @@ export default function CartComponent(props: any) {
           <Button
             name={`Desistir de Alterar`}
             onClick={() => props.setOpen(false)}
+            icon={Back}
             className={`
                                     bg-indigo-900 hover:bg-indigo-700 mt-10                                    
                                 `}
@@ -61,7 +63,3 @@ export default function CartComponent(props: any) {
     </>
   );
 }
-function dummy() {
-  // Router.push('/login');
-}
-

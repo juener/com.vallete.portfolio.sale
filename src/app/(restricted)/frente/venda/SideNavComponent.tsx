@@ -1,8 +1,19 @@
 import { Fragment, useState, useContext } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import TableComponent from '../TableComponent';
+import SideNavTableComponent from './SideNavTableComponent';
+import SideNavPaymentComponent from './SideNavPaymentComponent';
+import SideNavProductComponent from './SideNavProductComponent';
+import SideNavPreviewComponent from './SideNavPreviewComponent';
 
-export default function FullSideNav(props: any) {
+interface SideNavInterface {
+  type: string
+  children: any
+  product?: any
+  full?: boolean
+  right?: boolean
+}
+
+export default function SideNavComponent(props: SideNavInterface) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -28,18 +39,20 @@ export default function FullSideNav(props: any) {
               <Dialog.Overlay className="absolute inset-0 bg-blue-950 bg-opacity-90 transition-opacity" />
             </Transition.Child>
             <div className="fixed inset-y-0 left-0 max-w-full flex">
-
               <Transition.Child
                 as={Fragment}
                 enter="transform transition ease-in-out duration-300 sm:duration-300"
-                enterFrom="translate-x-full"
+                enterFrom={props.right ? "translate-x-full" : "-translate-x-full"}
                 enterTo="translate-x-0"
                 leave="transform transition ease-in-out duration-500 sm:duration-300"
                 leaveFrom="translate-x-0"
-                leaveTo="translate-x-full"
+                leaveTo={props.right ? "translate-x-full" : "-translate-x-full"}
               >
-                <div className="relative w-screen">
-                  <TableComponent setOpen={setOpen} />
+                <div className={`relative w-screen ${props.full ? null : "max-w-md"}`}>
+                  {props.type === 'product' ? <SideNavProductComponent setOpen={setOpen} product={props.product} /> : null}
+                  {props.type === 'table' ? <SideNavTableComponent setOpen={setOpen} /> : null}
+                  {props.type === 'payment' ? <SideNavPaymentComponent setOpen={setOpen} /> : null}
+                  {props.type === 'preview' ? <SideNavPreviewComponent setOpen={setOpen} product={props.product} /> : null}
                 </div>
               </Transition.Child>
             </div>

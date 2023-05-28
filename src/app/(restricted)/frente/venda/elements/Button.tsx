@@ -4,12 +4,13 @@ interface ButtonProps {
   onClick?: any,
   key?: string | number,
   className?: string
+  icon?: any
 }
 
 export default function Button(props: ButtonProps) {
   return (
     <button key={props.key} className={`
-      bg-blue-950 text-white rounded-md w-full p-2
+      bg-blue-950 text-white rounded-md w-full p-2 flex flex-row items-center justify-center
       ${props.className}
       ${props.product ?
         'bg-blue-900 hover:bg-blue-700 font-bold h-24 focus:bg-blue-500'
@@ -19,7 +20,7 @@ export default function Button(props: ButtonProps) {
       `}
       onClick={props.onClick}
     >
-      {props.name}
+      {props.icon ? <span className="m-2">{props.icon}</span> : null}{props.name}
     </button>
   )
 }

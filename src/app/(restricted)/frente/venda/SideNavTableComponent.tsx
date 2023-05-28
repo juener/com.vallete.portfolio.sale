@@ -1,8 +1,8 @@
 'use client'
 
 import Button from "./elements/Button";
-import { ProductsContext } from "@/app/utils/ProductsContext";
-import { useContext, useEffect, useState } from "react";
+import { Back, Table } from "@/app/style/icons.js"
+import { useEffect, useState } from "react";
 
 import { table } from "./_table.js"
 
@@ -29,14 +29,15 @@ export default function PaymentScreenComponent(props: any) {
               <Button
                 name={`Voltar`}
                 onClick={() => { props.setOpen(false); }}
+                icon={Back}
                 className={`
-                                        bg-blue-800 hover:bg-blue-700 m-4
-                                        font-extrabold text-xl
-                                    `}
+                          bg-blue-800 hover:bg-blue-700 m-4
+                            font-extrabold text-xl
+                        `}
               />
               <Button
                 name={`Alguma Função_`}
-                onClick={() => dummy()}
+                onClick={() => { }}
                 className={`
                                     bg-green-800 hover:bg-green-700 m-4
                                       font-extrabold text-xl
@@ -47,7 +48,7 @@ export default function PaymentScreenComponent(props: any) {
           <div className='w-2/3 m-10 items-center grid grid-cols-4 gap-4'>
             <h2 className="col-span-full w-full text-center text-5xl font-bold">Mesas</h2>
             {tables.map(t => (
-              <div key={t.id} className="font-black text-5xl"><Button key={t.id} name={t.id.toString()} /></div>
+              <div key={t.id} className="font-black text-4xl"><Button key={t.id} icon={Table} name={t.id.toString()} /></div>
             ))}
           </div>
         </div>
@@ -55,7 +56,3 @@ export default function PaymentScreenComponent(props: any) {
     </>
   );
 }
-function dummy() {
-  // Router.push('/login');
-}
-
