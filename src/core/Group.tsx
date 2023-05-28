@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 interface GroupInterface {
   name: string
-  priority?: number
+  priority?: number | undefined
 }
 
 export async function createGroup(group: GroupInterface) {
