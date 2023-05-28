@@ -3,7 +3,7 @@
 import Link from "next/link";
 import InputRetaguarda from "../elements/InputRetaguarda";
 
-import { Back, Save, Store } from '@/app/style/icons';
+import { Back, Store } from '@/app/style/icons';
 import { CiFloppyDisk } from "react-icons/ci";
 
 
