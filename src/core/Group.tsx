@@ -14,7 +14,7 @@ export async function createGroup(group: GroupInterface) {
   await prisma.group.create({
     data: {
       name: group.name,
-      priority: group.priority ?? null
+      priority: group.priority ?? 0
     }
   });
 }
