@@ -2,7 +2,7 @@ import { ProductsContext } from '@/app/utils/ProductsContext';
 import { useContext } from 'react';
 
 import { Menu } from '@headlessui/react'
-import SideNav from "./SideNav";
+import SideNav from "./elements/SideNav";
 
 interface ProductInterface {
   id: string;
@@ -11,7 +11,7 @@ interface ProductInterface {
   entryNumber: number;
 }
 
-export default function Row() {
+export default function CartRowsComponent() {
 
   const { productsList } = useContext(ProductsContext);
 

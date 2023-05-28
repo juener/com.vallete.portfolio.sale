@@ -2,17 +2,17 @@
 
 import { useEffect, useState } from "react"
 import Button from "./elements/Button"
-import menu from "./_cardapio";
+import menu from "./_menu.js";
 
-interface Group {
+interface GroupInterface {
   id: string,
   name: string
 }
 
 export default function GroupsComponent({ setSelectedGroup }: any) {
-  const [groups, setGroups] = useState<Group[]>([]);
+  const [groups, setGroups] = useState<GroupInterface[]>([]);
   useEffect(() => {
-    const allGroups = menu.groups.map<Group>(group => ({
+    const allGroups = menu.groups.map<GroupInterface>(group => ({
       id: group.id,
       name: group.name
     }));

@@ -1,13 +1,15 @@
-import { useContext } from 'react';
-import { ProductsContext } from '@/app/utils/ProductsContext';
-
 import Button from "./elements/Button";
-import Input from "./elements/Input";
-import Row from './elements/Row';
+import PaymentScreenRowsComponents from './PaymentScreenRowsComponents';
+
+import PaymentScreenMethodsComponent from "./PaymentScreenMethodsComponent";
+import { ProductsContext } from "@/app/utils/ProductsContext";
+import { useContext } from "react";
 
 
 export default function PaymentScreenComponent(props: any) {
-  const { removeProduct, removeAllProducts } = useContext(ProductsContext);
+
+  const { total } = useContext(ProductsContext);
+
   return (
     <>
       <div className="shadow-xl overflow-y-auto bg-gradient-to-tl from-pink-100 to-green-100">
@@ -22,14 +24,17 @@ export default function PaymentScreenComponent(props: any) {
               <p>Lançamentos</p>
             </div>
             <p className='text-xl text-center m-2'>Produtos lançados</p>
-            <Row />
+            <PaymentScreenRowsComponents />
           </div>
           <div className='w-1/3 m-10'>
             <div className='flex flex-row items-center justify-center px-2 my-10 h-24 rounded-md bg-lime-500 text-white text-5xl font-bold'>
               <p>PAGAMENTO</p>
             </div>
             <p className='text-xl text-center m-2'>Formas de Pagamento</p>
-            <Row />
+            <PaymentScreenMethodsComponent />
+            <div className='flex flex-row items-center justify-center px-2 mt-10 h-14 rounded-md bg-lime-500 text-white text-xl font-bold'>
+              <p>Falta Pagar: {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+            </div>
             <div className='flex flex-row items-center justify-between'>
               <Button
                 name={`Desistir de Pagar`}

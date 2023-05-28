@@ -2,7 +2,7 @@ import { ProductsContext } from '@/app/utils/ProductsContext';
 import { useContext } from 'react';
 
 import Button from "./elements/Button"
-import menu from "./_cardapio.js";
+import menu from "./_menu.js";
 
 export default function ProductsComponent({ selectedGroup }: any) {
 

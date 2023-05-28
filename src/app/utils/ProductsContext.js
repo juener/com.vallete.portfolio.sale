@@ -24,7 +24,7 @@ const ProductsProvider = ({ children }) => {
 
   const calcTotal = () => {
     const sum = productsList?.reduce((acc, product) => acc + product.price, 0);
-    setTotal(sum.toFixed(2));
+    setTotal(sum);
   };
 
   useEffect(() => {

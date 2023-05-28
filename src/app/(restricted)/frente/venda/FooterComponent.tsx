@@ -5,6 +5,7 @@ import SideNav from "./elements/SideNav";
 
 import ButtonSystem from "./elements/ButtonSystem";
 import { ProductsContext } from "@/app/utils/ProductsContext";
+import FullSideNav from "./elements/FullSideNav";
 
 export default function FooterComponent() {
   const { total } = useContext(ProductsContext);
@@ -19,7 +20,7 @@ export default function FooterComponent() {
             <Menu.Button className='w-full'>
               <SideNav toPay>
                 <div className='flex flex-row w-full justify-between'>
-                  <ButtonSystem name={`Pagar ${total}`} />
+                  <ButtonSystem name={`Pagar ${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`} />
                 </div>
               </SideNav>
             </Menu.Button>
@@ -34,7 +35,9 @@ export default function FooterComponent() {
           <ButtonSystem name="Delivery_" />
         </div>
         <div className="w-1/6 mx-4">
-          <ButtonSystem name="Mesas_" />
+          <FullSideNav>
+            <ButtonSystem name="Mesas" />
+          </FullSideNav>
         </div>
       </div>
     </div>
