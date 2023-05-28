@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 interface GroupInterface {
   name: string
-  priority?: number | undefined
+  priority?: number
 }
 
 export async function createGroup(group: GroupInterface) {
@@ -14,7 +14,7 @@ export async function createGroup(group: GroupInterface) {
   await prisma.group.create({
     data: {
       name: group.name,
-      priority: group.priority
+      priority: group.priority ?? null
     }
   });
 }
