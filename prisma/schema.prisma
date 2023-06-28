@@ -10,5 +10,16 @@ datasource db {
 model Group {
   id       String @id @default(uuid())
   name     String
-  priority Int
+  priority Int?   @default(0)
+
+  Product Product[]
+}
+
+model Product {
+  id       String @id @default(uuid())
+  name     String
+  priority Int    @default(0)
+  group    Group  @relation(fields: [groupId], references: [id])
+
+  groupId String
 }

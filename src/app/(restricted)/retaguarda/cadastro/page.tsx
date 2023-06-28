@@ -6,8 +6,19 @@ import InputRetaguarda from "../elements/InputRetaguarda";
 import { Back, Store } from '@/app/style/icons';
 import { CiFloppyDisk } from "react-icons/ci";
 
+import { useForm } from 'react-hook-form'
+
+// import { createGroup } from "@/app/lib/prisma/groups";
+
 
 export default function Cadastro() {
+  const { register, handleSubmit } = useForm();
+
+  async function registerGroup(data: any) {
+    console.log('=========================')
+    // createGroup(data);
+
+  }
   return (
     <div className="flex flex-row w-full h-screen">
       <div className="flex flex-col m-2 w-3/12">
@@ -32,14 +43,12 @@ export default function Cadastro() {
         </div>
       </div>
       <div className="w-9/12 m-2 rounded-md bg-gradient-to-r from-indigo-100 to-blue-100 flex flex-col justify-between">
-        <form className="grid grid-cols-2 gap-4 text-lg p-2" onSubmit={() => { }}>
+        <form className="grid grid-cols-2 gap-4 text-lg p-2" onSubmit={handleSubmit(registerGroup)}>
           <h2 className="text-3xl font-bold text-center col-span-full">Cadastro de Grupos</h2>
-          <InputRetaguarda label="Código" />
-          <InputRetaguarda label="Descrição" />
-          <InputRetaguarda label="Posição" />
-          <InputRetaguarda label="etc.." />
-          <InputRetaguarda label="etc.." />
-          <button className="col-span-full bg-blue-950 hover:bg-blue-900 text-white font-bold p-4 rounded-md flex flex-row items-center justify-center"><span className="mx-2 text-3xl"><CiFloppyDisk /></span>Salvar</button>
+          <InputRetaguarda label="Código" register={register('id')} />
+          <InputRetaguarda label="Nome" register={register('name')} />
+          <InputRetaguarda label="Posição" register={register('position')} />
+          <button className="col-span-full bg-blue-950 hover:bg-blue-900 text-white font-bold p-4 rounded-md flex flex-row items-center justify-center" type="submit"><span className="mx-2 text-3xl"><CiFloppyDisk /></span>Salvar</button>
         </form>
         <div className="flex flex-row bg-blue-950 h-14 w-full justify-between items-center text-white p-4 rounded-md">
           <Link href="/login"><div className="flex flex-row items-center"><span className="mx-2">{Back}</span>Sair</div></Link>
